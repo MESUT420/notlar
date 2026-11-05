@@ -188,11 +188,6 @@
   font-size: 13px;
 }
 
-.post-item {
-  animation: fade-up 0.4s var(--ease) both;
-  animation-delay: calc(0.15s + var(--i, 0) * 0.035s);
-}
-
 .post-item + .post-item {
   border-top: 1px solid #f1f2f5;
 }

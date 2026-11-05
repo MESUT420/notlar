@@ -154,7 +154,7 @@ function renderPosts() {
 
   if (dom.empty) dom.empty.hidden = true;
   dom.list.innerHTML = state.posts.map((post, index) => `
-    <li class="post-item" style="--i:${Math.min(index, 8)}">
+    <li class="post-item">
       <a class="post-row" href="post.html?id=${encodeURIComponent(post.id)}" data-id="${escapeHTML(post.id)}" data-year="${post.date.slice(0, 4)}">
         <time class="post-date" datetime="${post.date}">${formatShort(post.date)}</time>
         <span class="post-row-title">${escapeHTML(postTitle(post))}</span>
