@@ -15,7 +15,7 @@ Yazma alanı ana sayfadan linklenmez ve yalnızca GitHub erişim anahtarıyla a�
 
 1. GitHub → Settings → Developer settings → Personal access tokens → **Fine-grained tokens** → Generate new token.
 2. **Repository access:** Only select repositories → `notlar`. (“Public repositories / read-only” seçeneği yazma izni vermez.)
-3. **Permissions:** Repository permissions → **Add permissions** → **Contents** → **Read and write**. Metadata otomatik olarak read-only gelir.
+3. **Permissions:** **Repositories** sekmesi → **Add permissions** → aramaya **Contents** yaz → **Read and write**. Metadata otomatik olarak read-only gelir.
 4. Anahtarı oluştur ve `/studio/` ekranına yapıştır.
 
 `Contents` seçeneği görünmüyorsa klasik token da çalışır: Personal access tokens (classic) → Generate new token → `repo` kutusunu işaretle. Bu anahtar daha geniştir; iş bitince iptal edilebilir.
