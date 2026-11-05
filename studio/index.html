@@ -74,13 +74,18 @@
         <details class="auth-help">
           <summary>Erişim anahtarı nasıl oluşturulur?</summary>
           <ol>
-            <li>GitHub → Settings → Developer settings → Personal access tokens → <strong>Fine-grained tokens</strong>.</li>
-            <li>Repository access: <strong>Only select repositories</strong> → bu depo.</li>
-            <li>Permissions: <strong>Contents: Read and write</strong>. Metadata otomatik gelir.</li>
-            <li>Anahtarı oluştur ve buraya yapıştır.</li>
+            <li>GitHub → Settings → Developer settings → Personal access tokens → <strong>Fine-grained tokens</strong> → Generate new token.</li>
+            <li>Repository access: <strong>Only select repositories</strong> → <strong>notlar</strong>. “Public repositories (read-only)” yazma izni vermez.</li>
+            <li>Permissions → Repository permissions → <strong>Add permissions</strong> → <strong>Contents</strong> → <strong>Read and write</strong>. Metadata otomatik gelir.</li>
+            <li>Generate token → anahtarı kopyala ve buraya yapıştır.</li>
           </ol>
+          <p class="auth-help-note">
+            Contents seçeneğini göremiyorsan klasik token da çalışır:
+            <a href="https://github.com/settings/tokens/new" target="_blank" rel="noopener noreferrer">Tokens (classic)</a>
+            → Generate new token → <strong>repo</strong> kutusunu işaretle. Bu anahtar daha geniştir; işin bitince iptal edebilirsin.
+          </p>
           <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">
-            GitHub'da anahtar oluştur ↗
+            Fine-grained token oluştur ↗
           </a>
         </details>
 

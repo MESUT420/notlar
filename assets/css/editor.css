@@ -230,6 +230,18 @@
   text-underline-offset: 3px;
 }
 
+.auth-help-note {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 11.5px;
+  line-height: 1.65;
+}
+
+.auth-help-note a {
+  display: inline;
+  margin-top: 0;
+}
+
 .auth-note {
   margin-top: 18px;
   color: var(--muted);
