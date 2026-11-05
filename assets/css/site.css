@@ -1,0 +1,553 @@
+/* ==========================================================================
+   Notlar — yalnızca yazı listesi
+   Aydınlık yüzey, cobalt vurgu, tek kart.
+   ========================================================================== */
+
+.index-body,
+.post-body {
+  position: relative;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.page-glow {
+  position: absolute;
+  inset: -260px auto auto 50%;
+  z-index: 0;
+  width: 980px;
+  height: 620px;
+  margin-left: -490px;
+  background: radial-gradient(ellipse at center, rgba(47, 91, 232, 0.07), rgba(47, 91, 232, 0.02) 40%, transparent 66%);
+  filter: blur(16px);
+  pointer-events: none;
+  animation: subtle-glow 22s ease-in-out infinite;
+}
+
+.site-header,
+.index-main,
+.post-main {
+  position: relative;
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Üst bar
+   -------------------------------------------------------------------------- */
+
+.site-header {
+  height: 76px;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  width: min(var(--shell), calc(100% - var(--gutter) * 2));
+  height: 100%;
+  margin: 0 auto;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--accent);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 1;
+  transition: color 0.18s ease;
+}
+
+.brand:hover {
+  color: var(--accent-dark);
+}
+
+.brand-dot {
+  width: 6px;
+  height: 6px;
+  margin-top: -10px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform 0.25s var(--ease);
+}
+
+.brand:hover .brand-dot {
+  transform: scale(1.3);
+}
+
+/* --------------------------------------------------------------------------
+   Liste
+   -------------------------------------------------------------------------- */
+
+.index-main {
+  width: min(var(--content), calc(100% - var(--gutter) * 2));
+  margin: 0 auto;
+  padding: 18px 0 64px;
+}
+
+.archive {
+  animation: fade-up 0.5s var(--ease) both;
+}
+
+.archive-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.archive-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.year-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.year-tab {
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  transition:
+    color 0.16s ease,
+    background-color 0.16s ease;
+}
+
+.year-tab:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+.year-tab[aria-pressed='true'] {
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+}
+
+.archive-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 236px;
+  height: 38px;
+  padding: 0 13px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--surface-2);
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.archive-search:focus-within {
+  background: var(--surface);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.archive-search > svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  color: var(--muted);
+}
+
+.archive-search input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: 13px;
+}
+
+/* --------------------------------------------------------------------------
+   Satırlar
+   -------------------------------------------------------------------------- */
+
+.post-list {
+  padding: 4px 8px 8px;
+}
+
+.list-loading {
+  padding: 22px 16px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.post-item {
+  animation: fade-up 0.4s var(--ease) both;
+  animation-delay: calc(0.15s + var(--i, 0) * 0.035s);
+}
+
+.post-item + .post-item {
+  border-top: 1px solid #f1f2f5;
+}
+
+.post-row {
+  display: grid;
+  grid-template-columns: 108px minmax(0, 1fr) 22px;
+  align-items: center;
+  gap: 18px;
+  padding: 15px 16px;
+  border-radius: 16px;
+  transition: background-color 0.16s ease;
+}
+
+.post-row:hover {
+  background: #f5f7ff;
+}
+
+.post-date {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  transition: color 0.16s ease;
+}
+
+.post-row-title {
+  overflow: hidden;
+  color: var(--text);
+  font-size: 16.5px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.16s ease;
+}
+
+.post-arrow {
+  justify-self: end;
+  width: 16px;
+  height: 16px;
+  color: var(--muted);
+  opacity: 0.5;
+  transition:
+    color 0.16s ease,
+    opacity 0.16s ease,
+    transform 0.2s var(--ease);
+}
+
+.post-row:hover .post-date {
+  color: var(--text-2);
+}
+
+.post-row:hover .post-arrow {
+  color: var(--accent);
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+.post-row:focus-visible {
+  outline-offset: -2px;
+}
+
+.empty-state {
+  padding: 44px 20px;
+  color: var(--muted);
+  font-size: 13.5px;
+  text-align: center;
+}
+
+.empty-state p + button,
+.empty-state p + a {
+  margin-top: 14px;
+}
+
+.empty-state a,
+.empty-state button {
+  color: var(--accent-dark);
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Yazı sayfası
+   -------------------------------------------------------------------------- */
+
+.post-body {
+  background: var(--bg);
+}
+
+.reading-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 320;
+  height: 2px;
+  pointer-events: none;
+}
+
+.reading-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.post-main {
+  width: min(860px, calc(100% - var(--gutter) * 2));
+  margin: 0 auto;
+  padding: 18px 0 64px;
+}
+
+.post-card {
+  padding: clamp(24px, 5vw, 54px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  animation: fade-up 0.5s var(--ease) both;
+}
+
+.post-pill {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 11px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-size: 11.5px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.post-title {
+  max-width: 20ch;
+  margin-top: 18px;
+  color: var(--text);
+  font-size: clamp(34px, 4.8vw, 52px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.post-rule {
+  height: 1px;
+  margin: clamp(26px, 4vh, 36px) 0;
+  background: var(--line);
+}
+
+.post-content.prose {
+  font-size: clamp(16px, 1.2vw, 17.5px);
+  line-height: 1.85;
+  color: var(--text-2);
+}
+
+.post-content > p:first-of-type {
+  color: var(--text);
+}
+
+.post-footer {
+  margin-top: clamp(40px, 7vh, 60px);
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+}
+
+.post-footer a {
+  color: var(--muted);
+  transition: color 0.16s ease;
+}
+
+.post-footer a:hover {
+  color: var(--text);
+}
+
+.post-status {
+  padding: 80px 0;
+  color: var(--muted);
+  font-size: 13.5px;
+  text-align: center;
+}
+
+.post-status a {
+  color: var(--accent-dark);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Duyarlı
+   -------------------------------------------------------------------------- */
+
+@media (hover: none) {
+  .post-arrow {
+    opacity: 0.65;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-header {
+    height: 64px;
+  }
+
+  .brand {
+    font-size: 22px;
+  }
+
+  .brand-dot {
+    width: 5px;
+    height: 5px;
+    margin-top: -9px;
+  }
+
+  .index-main {
+    padding: 12px 0 44px;
+  }
+
+  .archive-card {
+    border-radius: 24px;
+    box-shadow: none;
+  }
+
+  .year-tabs {
+    gap: 2px;
+  }
+
+  .year-tab {
+    height: 32px;
+    padding: 0 12px;
+    font-size: 12.5px;
+  }
+
+  .post-list {
+    padding: 4px 6px 6px;
+  }
+
+  .post-row {
+    grid-template-columns: 86px minmax(0, 1fr) 18px;
+    gap: 12px;
+    padding: 14px 12px;
+  }
+
+  .post-date {
+    font-size: 11px;
+  }
+
+  .post-row-title {
+    font-size: 15px;
+  }
+
+  .post-main {
+    padding: 12px 0 44px;
+  }
+
+  .post-card {
+    border-radius: 24px;
+    box-shadow: none;
+    padding: 24px 20px 28px;
+  }
+
+  .post-title {
+    margin-top: 14px;
+    font-size: clamp(30px, 9vw, 40px);
+    max-width: none;
+  }
+
+  .post-rule {
+    margin: 24px 0;
+  }
+
+  .post-content.prose {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .post-footer {
+    margin-top: 44px;
+  }
+}
+
+@media (max-width: 620px) {
+  .archive-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .archive-search {
+    width: 100%;
+    height: 42px;
+  }
+}
+
+@media (max-width: 520px) {
+  .post-row {
+    grid-template-columns: 1fr 18px;
+    gap: 3px 10px;
+    padding: 13px 12px;
+  }
+
+  .post-date {
+    grid-column: 1 / -1;
+  }
+
+  .post-row-title {
+    grid-column: 1;
+    font-size: 15px;
+  }
+
+  .post-arrow {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: center;
+  }
+}
+
+@media print {
+  .page-glow,
+  .site-header,
+  .post-footer,
+  .reading-progress {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #111;
+  }
+
+  .post-main {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+  }
+
+  .post-card {
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+    animation: none;
+  }
+
+  .post-content.prose {
+    color: #222;
+  }
+}

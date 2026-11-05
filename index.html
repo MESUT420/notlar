@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self'; base-uri 'self'; form-action 'self'">
+  <title>Notlar</title>
+  <meta name="description" content="Notlar">
+  <meta name="author" content="Notlar">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f7f8fa">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:title" content="Notlar">
+  <meta property="og:description" content="Notlar">
+  <meta property="og:image" content="https://mesut420.github.io/notlar/assets/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Notlar">
+  <meta name="twitter:description" content="Notlar">
+  <meta name="twitter:image" content="https://mesut420.github.io/notlar/assets/img/og.png">
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="assets/img/icon-180.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/prose.css">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script type="module" src="assets/js/index.js"></script>
+</head>
+<body class="index-body" id="top">
+
+  <a class="skip-link" href="#main">Yazılara geç</a>
+
+  <div class="page-glow" aria-hidden="true"></div>
+
+  <svg class="icon-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.6"/><path d="m15.8 15.8 4.7 4.7"/></symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+  </svg>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="./"><span class="brand-text">notlar</span><span class="brand-dot" aria-hidden="true"></span></a>
+    </div>
+  </header>
+
+  <main class="index-main" id="main">
+    <h1 class="sr-only">Notlar</h1>
+
+    <section class="archive" id="yazilar" aria-label="Yazılar">
+      <div class="archive-card">
+        <div class="archive-toolbar">
+          <div class="year-tabs" id="year-tabs" role="group" aria-label="Yıla göre filtrele"></div>
+
+          <label class="archive-search">
+            <svg aria-hidden="true"><use href="#i-search"></use></svg>
+            <span class="sr-only">Yazılarda ara</span>
+            <input id="search-input" type="search" placeholder="Ara" autocomplete="off" spellcheck="false">
+          </label>
+        </div>
+
+        <ol class="post-list" id="post-list" aria-live="polite" aria-busy="true">
+          <li class="list-loading">Yükleniyor…</li>
+        </ol>
+
+        <div class="empty-state" id="empty-state" hidden>
+          <p>Henüz yazı yok.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <noscript>
+    <div class="noscript">Yazıları görmek için JavaScript'e ihtiyaç var.</div>
+  </noscript>
+
+</body>
+</html>

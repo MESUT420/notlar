@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sayfa bulunamadı — Notlar</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100vh; }
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      padding: 24px;
+      background:
+        radial-gradient(700px 420px at 50% -10%, rgba(47, 91, 232, 0.1), transparent 65%),
+        #f7f8fa;
+      color: #15171c;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      text-align: center;
+    }
+    .brand { color: #2f5be8; font-size: 26px; font-weight: 700; letter-spacing: -0.05em; text-decoration: none; }
+    h1 { margin: 0; font-size: clamp(26px, 5vw, 38px); letter-spacing: -0.04em; }
+    p { margin: 0; color: #6f7580; font-size: 14px; }
+    .home {
+      margin-top: 10px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: #2f5be8;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <a class="brand" href="/notlar/">notlar.</a>
+  <h1>Sayfa bulunamadı.</h1>
+  <p>Aradığın sayfa taşınmış veya hiç var olmamış olabilir.</p>
+  <a class="home" id="home-link" href="/notlar/">Ana sayfaya dön</a>
+  <script>
+    (function () {
+      var parts = location.pathname.split('/').filter(Boolean);
+      var root = parts[0] === 'notlar' ? '/notlar/' : '/';
+      document.getElementById('home-link').href = root;
+      document.querySelector('.brand').href = root;
+    })();
+  </script>
+</body>
+</html>

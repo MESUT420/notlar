@@ -1,0 +1,37 @@
+{
+  "version": 2,
+  "posts": [
+    {
+      "id": "baslamak-uzerine",
+      "date": "2026-11-05",
+      "title": "Başlamak üzerine",
+      "content": "Bugün kendime bir yer açtım.\n\nKâğıt kokusu yerine ekran ışığı var belki, ama niyet aynı: günü kaybetmeden önce ona bir cümle bırakmak. Her şeyi anlatmak zorunda değilim. Bazen tek bir ayrıntı yeter — pencere kenarında duran bardak, henüz bitmemiş bir cümle, akşamüstü gelen o garip huzur.\n\nBurada kural basit: **yazmak için doğru anı beklememek.** Uzun olması gerekmiyor. Güzel olması da. Sadece olması yeterli.\n\n> Yazmak, geçen günü geri çağırmanın en sessiz yolu.\n\nBurası ilk sayfa. Gerisini zaman yazacak.",
+      "createdAt": "2026-11-05T19:41:00.000Z",
+      "updatedAt": "2026-11-05T19:41:00.000Z"
+    },
+    {
+      "id": "kucuk-rituller",
+      "date": "2026-10-28",
+      "title": "Küçük ritüeller",
+      "content": "Her gün yazmak, her günü büyük bir olay gibi yaşamak değil. Tam tersi: küçük olanı fark etmek.\n\nBir fincanın buharı. Yolda geçen bir melodi. Birinin söylediği, senin saatler sonra hâlâ düşündüğün o cümle.\n\n## On dakika\n\nGünün sonunda on dakika ayırıyorum. Telefonu ters çeviriyorum, pencereyi aralıyorum ve sadece bugün olanları değil, bugün bende kalanı yazıyorum. Bazen üç satır, bazen üç sayfa.\n\nUnutmamak için değil; **dikkatle bakmak için.**",
+      "createdAt": "2026-10-28T21:12:00.000Z",
+      "updatedAt": "2026-10-28T21:12:00.000Z"
+    },
+    {
+      "id": "not-tutmak-uzerine",
+      "date": "2026-10-12",
+      "title": "Not tutmak üzerine",
+      "content": "Burada mükemmel cümleler yok.\n\n- Sansür yok.\n- Düzeltmek için geç kalmak yok.\n- “Sonra yazarım” yok.\n\nBir gün yalnızca bir fotoğrafın altına iki cümle yazabilirim. Başka bir gün hiçbir şey olmamış gibi görünen bir günü anlatırım. İkisi de geçerli.\n\nAsıl mesele şu: **kayıt tutmak, hayatı bir arşive dönüştürmek değil.** Ona geri dönüş yolu bırakmak.",
+      "createdAt": "2026-10-12T18:05:00.000Z",
+      "updatedAt": "2026-10-12T18:05:00.000Z"
+    },
+    {
+      "id": "ekimin-son-isigi",
+      "date": "2026-09-30",
+      "title": "Ekimin son ışığı",
+      "content": "Ekim, İstanbul'da bir veda gibi geçiyor.\n\nÖğleden sonra dörtte güneş artık farklı bir açıdan vuruyor. Duvarda uzayan gölgeler, akşamın yaklaştığını fısıldıyor. Böyle saatlerde şehir bana daha yavaş, daha affedici görünüyor.\n\nBugün yaptığım tek önemli şey, biraz yürümek oldu. Kulaklık yok, hedef yok. Sadece ayaklarımın beni götürdüğü yere kadar.\n\nDönüşte çay demledim. Günü kapatmadan önce burada bırakıyorum: **bazen hiçbir şey yapmamak, günün en iyi kararı oluyor.**",
+      "createdAt": "2026-09-30T17:26:00.000Z",
+      "updatedAt": "2026-09-30T17:26:00.000Z"
+    }
+  ]
+}

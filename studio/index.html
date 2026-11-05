@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://api.github.com; base-uri 'self'; form-action 'self'">
+  <title>Studio — Notlar</title>
+  <meta name="description" content="Yazma masası.">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f7f8fa">
+
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/prose.css">
+  <link rel="stylesheet" href="../assets/css/editor.css">
+  <script type="module" src="../assets/js/editor.js"></script>
+</head>
+<body class="studio-body" id="top">
+
+  <div class="studio-glow" aria-hidden="true"></div>
+
+  <svg class="icon-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.6"/><path d="m15.8 15.8 4.7 4.7"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+  </svg>
+
+  <!-- Giriş --------------------------------------------------------------- -->
+  <section class="auth-view" id="auth-view">
+    <header class="auth-header">
+      <a class="brand" href="../"><span class="brand-text">notlar</span><span class="brand-dot" aria-hidden="true"></span></a>
+      <span class="studio-tag">studio</span>
+    </header>
+
+    <main class="auth-main">
+      <div class="auth-card">
+        <p class="auth-eyebrow">Studio</p>
+        <h1 class="auth-title">Yazma masası</h1>
+        <p class="auth-sub">GitHub deposuna bağlan, yaz ve yayınla.</p>
+
+        <form class="auth-form" id="auth-form" novalidate>
+          <div class="field">
+            <label for="auth-owner">GitHub kullanıcı adı</label>
+            <input id="auth-owner" name="owner" type="text" autocomplete="username" placeholder="kullanıcı-adı" required>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="auth-repo">Depo</label>
+              <input id="auth-repo" name="repo" type="text" autocomplete="off" placeholder="notlar" required>
+            </div>
+            <div class="field">
+              <label for="auth-branch">Dal</label>
+              <input id="auth-branch" name="branch" type="text" autocomplete="off" placeholder="main">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="auth-token">Erişim anahtarı</label>
+            <input id="auth-token" name="token" type="password" autocomplete="off" placeholder="github_pat_…" required>
+          </div>
+
+          <p class="auth-error" id="auth-error" role="alert" hidden></p>
+
+          <button class="btn btn--accent btn--block" type="submit" id="auth-submit">Bağlan</button>
+        </form>
+
+        <details class="auth-help">
+          <summary>Erişim anahtarı nasıl oluşturulur?</summary>
+          <ol>
+            <li>GitHub → Settings → Developer settings → Personal access tokens → <strong>Fine-grained tokens</strong>.</li>
+            <li>Repository access: <strong>Only select repositories</strong> → bu depo.</li>
+            <li>Permissions: <strong>Contents: Read and write</strong>. Metadata otomatik gelir.</li>
+            <li>Anahtarı oluştur ve buraya yapıştır.</li>
+          </ol>
+          <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">
+            GitHub'da anahtar oluştur ↗
+          </a>
+        </details>
+
+        <p class="auth-note">Anahtar yalnızca bu cihazın tarayıcısında saklanır; depoya yazılmaz.</p>
+        <a class="auth-back" href="../">← Siteye dön</a>
+      </div>
+    </main>
+  </section>
+
+  <!-- Uygulama ------------------------------------------------------------ -->
+  <section class="app-view" id="app-view" hidden>
+    <header class="studio-topbar">
+      <div class="topbar-left">
+        <button class="icon-button sidebar-toggle" type="button" id="sidebar-toggle" aria-label="Yazı listesini aç">
+          <svg><use href="#i-menu"></use></svg>
+        </button>
+        <a class="brand" href="../"><span class="brand-text">notlar</span><span class="brand-dot" aria-hidden="true"></span></a>
+        <span class="topbar-sep" aria-hidden="true">/</span>
+        <span class="studio-tag">studio</span>
+      </div>
+
+      <div class="topbar-right">
+        <span class="save-status" id="save-status">Hazır</span>
+        <a class="topbar-link" href="../" target="_blank" rel="noopener noreferrer">Siteyi gör ↗</a>
+        <button class="btn btn--accent btn--small" type="button" id="publish-button">Yayınla</button>
+      </div>
+    </header>
+
+    <div class="studio-layout">
+      <div class="sidebar-scrim" id="sidebar-scrim" hidden></div>
+
+      <aside class="studio-sidebar" id="studio-sidebar">
+        <div class="sidebar-top">
+          <button class="btn btn--accent btn--block" type="button" id="new-post">+ Yeni yazı</button>
+          <button class="icon-button sidebar-close" type="button" id="sidebar-close" aria-label="Yazı listesini kapat">
+            <svg><use href="#i-close"></use></svg>
+          </button>
+        </div>
+
+        <label class="sidebar-search">
+          <svg aria-hidden="true"><use href="#i-search"></use></svg>
+          <span class="sr-only">Yazılarda ara</span>
+          <input id="post-search" type="search" placeholder="Ara" autocomplete="off" spellcheck="false">
+        </label>
+
+        <div class="sidebar-heading">
+          <span>Yazılar</span>
+          <span id="sidebar-count">0</span>
+        </div>
+
+        <ul class="sidebar-list" id="sidebar-list"></ul>
+
+        <div class="sidebar-footer">
+          <button class="text-button" type="button" id="settings-button">Ayarlar</button>
+          <button class="text-button" type="button" id="logout-button">Çıkış</button>
+        </div>
+      </aside>
+
+      <main class="studio-main" id="studio-main">
+        <div class="editor-card">
+          <div class="editor-meta">
+            <label class="date-field">
+              <span class="sr-only">Tarih</span>
+              <input id="date-input" type="date">
+            </label>
+            <span class="editor-state" id="editor-state">Yeni yazı</span>
+            <button class="text-button editor-delete" type="button" id="delete-button" hidden>Sil</button>
+          </div>
+
+          <input id="title-input" class="editor-title" type="text" placeholder="Başlık" autocomplete="off" spellcheck="false">
+
+          <div class="editor-toolbar">
+            <div class="toolbar-group">
+              <button type="button" data-md="bold" title="Kalın" aria-label="Kalın">B</button>
+              <button type="button" data-md="italic" title="İtalik" aria-label="İtalik"><span class="toolbar-italic">I</span></button>
+              <button type="button" data-md="h2" title="Başlık" aria-label="Başlık">H2</button>
+              <button type="button" data-md="quote" title="Alıntı" aria-label="Alıntı">"</button>
+              <button type="button" data-md="list" title="Liste" aria-label="Liste">•</button>
+              <button type="button" data-md="link" title="Bağlantı" aria-label="Bağlantı">↗</button>
+            </div>
+            <button class="preview-toggle" type="button" id="preview-toggle">Önizleme</button>
+          </div>
+
+          <textarea id="content-input" class="editor-content" placeholder="Yazmaya başla…" spellcheck="true"></textarea>
+          <div id="preview" class="prose prose--preview editor-preview" hidden></div>
+
+          <div class="editor-footer">
+            <span id="word-count">0 kelime</span>
+            <span class="editor-hint">Markdown desteklenir</span>
+          </div>
+        </div>
+      </main>
+    </div>
+  </section>
+
+  <!-- Ayarlar ------------------------------------------------------------- -->
+  <dialog class="modal" id="settings-dialog" aria-labelledby="settings-title">
+    <div class="modal-head">
+      <h2 id="settings-title">Ayarlar</h2>
+      <button class="icon-button modal-close" type="button" data-close-settings aria-label="Ayarları kapat">
+        <svg><use href="#i-close"></use></svg>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="field">
+        <label for="site-title">Site adı</label>
+        <input id="site-title" type="text" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="site-author">Yazar</label>
+        <input id="site-author" type="text" autocomplete="off" placeholder="isteğe bağlı">
+      </div>
+      <div class="field">
+        <label for="site-description">Açıklama</label>
+        <textarea id="site-description" rows="2"></textarea>
+      </div>
+
+      <div class="connection-box">
+        <span class="connection-label">Bağlantı</span>
+        <p id="connection-info">—</p>
+      </div>
+    </div>
+
+    <div class="modal-foot">
+      <button class="btn" type="button" data-close-settings>Vazgeç</button>
+      <button class="btn btn--accent" type="button" id="settings-save">Kaydet</button>
+    </div>
+  </dialog>
+
+  <!-- Onay ---------------------------------------------------------------- -->
+  <dialog class="modal modal--confirm" id="confirm-dialog" aria-labelledby="confirm-title">
+    <div class="modal-body">
+      <h2 id="confirm-title">Emin misin?</h2>
+      <p id="confirm-message"></p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn" type="button" id="confirm-cancel">Vazgeç</button>
+      <button class="btn btn--danger" type="button" id="confirm-ok">Sil</button>
+    </div>
+  </dialog>
+
+  <div class="studio-toast" id="toast" popover="manual" role="status" aria-live="polite"></div>
+
+  <noscript>
+    <div class="noscript">Yazma masası için JavaScript'e ihtiyaç var.</div>
+  </noscript>
+
+</body>
+</html>
