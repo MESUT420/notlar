@@ -752,7 +752,7 @@ async function publishCurrent() {
     document.title = `${postTitle(finalPost || base)} — Studio`;
 
     renderSidebar();
-    showToast('Yayınlandı. GitHub Pages birkaç dakika içinde güncellenir.', 5200);
+    showToast('Yayınlandı. Siteyi yenilediğinde görünür.', 4200);
   } catch (error) {
     console.error('[Studio] Yayın hatası:', error);
     dom.saveStatus.textContent = 'Yayınlanamadı';
@@ -831,7 +831,7 @@ async function deleteCurrent() {
     if (merged.length) selectPost(merged[0].id);
     else newPost();
 
-    showToast('Yazı silindi. GitHub Pages 1–2 dakika içinde güncellenir.', 4200);
+    showToast('Yazı silindi. Siteyi yenilediğinde listeden kalkar.', 4200);
   } catch (error) {
     console.error('[Studio] Silme hatası:', error);
     state.dirty = true;

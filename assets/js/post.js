@@ -8,6 +8,7 @@ import {
   postTitle,
   plainText
 } from './core.js';
+import { loadPosts, loadSite } from './data.js';
 import { renderMarkdown } from './markdown.js';
 
 const $ = (selector, root = document) => root.querySelector(selector);
@@ -66,21 +67,13 @@ function initProgress() {
    Veri
    -------------------------------------------------------------------------- */
 
-async function fetchJSON(path) {
-  const url = new URL(path, document.baseURI);
-  url.searchParams.set('v', Date.now().toString(36));
-  const response = await fetch(url, { cache: 'no-store' });
-  if (!response.ok) throw new Error(`İstek başarısız (${response.status})`);
-  return response.json();
-}
-
 async function loadPost() {
   const id = new URLSearchParams(window.location.search).get('id');
 
   try {
     const [postsResult, siteResult] = await Promise.all([
-      fetchJSON('data/posts.json'),
-      fetchJSON('data/site.json').catch(() => null)
+      loadPosts(),
+      loadSite().catch(() => null)
     ]);
 
     if (siteResult && typeof siteResult === 'object') {

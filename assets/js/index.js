@@ -11,6 +11,7 @@ import {
   normalize,
   isEditableTarget
 } from './core.js';
+import { loadPosts, loadSite } from './data.js';
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -50,18 +51,10 @@ function init() {
    Veri
    -------------------------------------------------------------------------- */
 
-async function fetchJSON(path) {
-  const url = new URL(path, document.baseURI);
-  url.searchParams.set('v', Date.now().toString(36));
-  const response = await fetch(url, { cache: 'no-store' });
-  if (!response.ok) throw new Error(`İstek başarısız (${response.status})`);
-  return response.json();
-}
-
 async function loadData() {
   const [postsResult, siteResult] = await Promise.allSettled([
-    fetchJSON('data/posts.json'),
-    fetchJSON('data/site.json')
+    loadPosts(),
+    loadSite()
   ]);
 
   if (siteResult.status === 'fulfilled' && siteResult.value && typeof siteResult.value === 'object') {

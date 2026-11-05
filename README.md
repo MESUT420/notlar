@@ -32,6 +32,8 @@ Anahtar yalnızca tarayıcının `localStorage` alanında tutulur; repoya veya s
 - **Site adı / yazar:** Studio → “Ayarlar”.
 - **Taslaklar:** Yazarken cihazda otomatik saklanır. Yayınlanana kadar repoya gitmez.
 
+Yazı listesi GitHub'daki güncel `data/posts.json` dosyasından okunur. Yayınlama veya silme sonrası siteyi yenilemen yeterlidir; GitHub Pages build'i beklenmez. (HTML/CSS/JS değişiklikleri için Pages build'i yine gerekir.)
+
 Yazılar Markdown destekler: başlık (`##`), kalın, italik, liste, alıntı, bağlantı, görsel ve kod.
 
 ## Yerel geliştirme
