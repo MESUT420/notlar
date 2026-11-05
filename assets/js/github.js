@@ -44,6 +44,7 @@ export class GitHub {
   async request(path, { method = 'GET', body = null } = {}) {
     const response = await fetch(`${API}${path}`, {
       method,
+      cache: 'no-store',
       headers: {
         Accept: 'application/vnd.github+json',
         Authorization: `Bearer ${this.token}`,
@@ -72,7 +73,7 @@ export class GitHub {
   }
 
   async getFile(path) {
-    const endpoint = `/repos/${encodeURIComponent(this.owner)}/${encodeURIComponent(this.repo)}/contents/${encodePath(path)}?ref=${encodeURIComponent(this.branch)}`;
+    const endpoint = `/repos/${encodeURIComponent(this.owner)}/${encodeURIComponent(this.repo)}/contents/${encodePath(path)}?ref=${encodeURIComponent(this.branch)}&t=${Date.now()}`;
     try {
       const data = await this.request(endpoint);
       if (Array.isArray(data)) throw new GitHubError('Yol bir dosya değil.', 400);
@@ -115,7 +116,7 @@ export function githubErrorMessage(error) {
     case 404:
       return 'Depo bulunamadı ya da anahtarın bu depoya erişimi yok.';
     case 409:
-      return 'Dosya bu sırada değişti. Tekrar deniyorum…';
+      return 'Dosya bu sırada değişti. Birkaç saniye sonra tekrar dene.';
     case 422:
       return 'Değişiklik uygulanamadı. Dosya biçimini kontrol et.';
     default:

@@ -778,7 +778,7 @@ function uniqueId(post, latest) {
 async function commitPosts(mutator, message) {
   let lastError = null;
 
-  for (let attempt = 0; attempt < 2; attempt += 1) {
+  for (let attempt = 0; attempt < 3; attempt += 1) {
     const file = await state.github.getFile('data/posts.json');
     const latest = parsePostsFile(file);
     const merged = normalizePosts(mutator(latest));
@@ -789,7 +789,10 @@ async function commitPosts(mutator, message) {
       return merged;
     } catch (error) {
       lastError = error;
-      if (error.status === 409 && attempt === 0) continue;
+      if (error.status === 409 && attempt < 2) {
+        await new Promise((resolve) => setTimeout(resolve, 300 * (attempt + 1)));
+        continue;
+      }
       throw error;
     }
   }
@@ -828,9 +831,10 @@ async function deleteCurrent() {
     if (merged.length) selectPost(merged[0].id);
     else newPost();
 
-    showToast('Yazı silindi.');
+    showToast('Yazı silindi. GitHub Pages 1–2 dakika içinde güncellenir.', 4200);
   } catch (error) {
     console.error('[Studio] Silme hatası:', error);
+    state.dirty = true;
     showToast(githubErrorMessage(error));
     dom.saveStatus.textContent = 'Silinemedi';
   } finally {
@@ -914,7 +918,7 @@ async function saveSettings() {
 async function commitSite(mutator, message) {
   let lastError = null;
 
-  for (let attempt = 0; attempt < 2; attempt += 1) {
+  for (let attempt = 0; attempt < 3; attempt += 1) {
     const file = await state.github.getFile('data/site.json');
     let latest = {};
     if (file) {
@@ -933,7 +937,10 @@ async function commitSite(mutator, message) {
       return merged;
     } catch (error) {
       lastError = error;
-      if (error.status === 409 && attempt === 0) continue;
+      if (error.status === 409 && attempt < 2) {
+        await new Promise((resolve) => setTimeout(resolve, 300 * (attempt + 1)));
+        continue;
+      }
       throw error;
     }
   }
